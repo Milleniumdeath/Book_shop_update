@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Book SHop | Book</title>
+    <style>
+    .btn-link {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-link:hover {
+      background-color: #45a049;
+    }
+  </style>
+    <a href="/books/" class="btn-link"><h2>Books page</h2></a>
 </head>
 <body>
-$END$
+<h1>Book price</h1>
+<hr>
+
+<p> Kitob nomi: {{price.title}}
+<hr>
+    Yozuvchi ismi: {{price.author.name}}
+<hr>
+    Narxi: {{price.price}}so'm
+<hr>
+    Nechta mavjudligi: {{price.stock}} </p>
+
 </body>
 </html>

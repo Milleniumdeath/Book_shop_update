@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Book SHop | Authors</title>
+    <style>
+    .btn-link {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-link:hover {
+      background-color: #45a049;
+    }
+  </style>
+    <a href="/" class="btn-link"><h2>Home page</h2></a>
 </head>
 <body>
-$END$
+<h1>Authors tables</h1>
+<hr>
+{% for author in authors %}
+<p>{{forloop.counter}}. {{author.name}} {{author.birth_year}}-yil</p>
+{% endfor %}
 </body>
 </html>

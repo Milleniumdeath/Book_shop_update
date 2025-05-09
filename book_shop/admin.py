@@ -3,4 +3,4 @@ from .models import *
 admin.site.register(
     [Author, Book, Customer, Order]
 )
-# Register your models here.
+
