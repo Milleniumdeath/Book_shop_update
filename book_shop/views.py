@@ -15,6 +15,12 @@ def home_view(request):
     return render(request, 'index.html')
 
 def authors_view(request):
+    if request.method=="POST":
+        Author.objects.create(
+            name=request.POST.get("name"),
+            birth_year = int(request.POST.get("birth_year"))
+        )
+        return redirect('yozuvchi')
     authors = Author.objects.all()
     context = {
         'authors' : authors,
@@ -22,7 +28,18 @@ def authors_view(request):
     return render(request, 'authors.html', context=context)
 
 def books_view(request):
+    if request.method == "POST":
+        Book.objects.create(
+            title=request.POST.get("title"),
+            author=Author.objects.get(id=request.POST.get("author_id")),
+            price=request.POST.get("price"),
+            stock=request.POST.get("stock")
+        )
+        return redirect('books')
+
     books = Book.objects.all()
+
+    yozuvchilar = Author.objects.order_by('name')
     search = request.GET.get('search')
     if search is not None:
         books = books.filter(title__contains=search)
@@ -30,6 +47,7 @@ def books_view(request):
     kitob = {
         'books' : books,
         'search': search,
+        'yozuvchilar': yozuvchilar,
     }
 
     return render(request, 'books.html', context=kitob )

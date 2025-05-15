@@ -22,6 +22,18 @@
     }
   </style>
     <a href="/" class="btn-link"><h2>Home page</h2></a>
+    <hr>
+        <form method="post">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+
+            <label for="birth_year">Birth year:</label>
+            <input type="number" name="birth_year" id="birth_year" required>
+
+            <button type="submit">Qo'shish</button>
+        </form>
+    <hr>
 
 </head>
 <body>

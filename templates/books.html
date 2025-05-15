@@ -27,6 +27,31 @@
     <a href="/stock/" class="btn-link">Book max stock</a>
     <a href="/like/" class="btn-link">Author's books</a>
     <br><br><br><br>
+    <hr>
+        <form method="post">
+            {% csrf_token %}
+            <label >Kitob nomi:</label>
+            <input type="text" name="title" required placeholder="Kecha va Kunduz">
+
+            <label> Yozuvchi:</label>
+            <select name="author_id" >
+                {% for author in yozuvchilar %}
+                    <option value="{{author.id}}">{{author.name}}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <label >Kitob narxi:</label>
+            <input type="number" name="price" required placeholder="100000so'm">
+
+            <label >Nechta bor:</label>
+            <input type="number" name="stock" required placeholder="10ta">
+            <br><br>
+            <button type="submit">Qo'shish</button>
+        </form>
+
+
+
+    <hr>
     <form>
         <input type="text" name="search"{% if search %} value="{{search}}"  {% endif %}>
         <button>Qidirish</button>
