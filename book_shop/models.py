@@ -17,8 +17,13 @@ class Book(models.Model):
         return self.title
 #----------------------------------------------------------------------------------
 class Customer(models.Model):
+    Jinsi = [
+        ('erkak', 'erkak'),
+        ('ayol', 'ayol')
+    ]
     name = models.CharField(max_length=255)
     email = models.EmailField()
+    jins = models.CharField(choices=Jinsi, max_length=20)
 
     def __str__(self):
         return self.name

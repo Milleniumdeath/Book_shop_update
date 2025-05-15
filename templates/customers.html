@@ -21,13 +21,26 @@
       background-color: #45a049;
     }
   </style>
-    <a href="/" class="btn-link"><h2>Home page</h2></a>
+    <a href="/" class="btn-link"><h2>Home page</h2></a> <br><br><br>
+    <form>
+        <select name="gender">
+            {%for gender in genders%}
+                <option {%if gender.0 == select_gender%} selected {% endif%}>{{gender.0}}</option>
+            {% endfor%}
+        </select>
+        <button>Filter</button>
+    </form>
 </head>
 <body>
 <h1>Customers tables</h1>
 <hr>
 {% for customer in customers %}
-<p>{{forloop.counter}}. <a href="/customer/">{{customer.name}} </a> {{customer.email}} </p>
+<p>{{forloop.counter}}. <a href="/customer/">{{customer.name}} </a> {{customer.email}}
+    <a href="/customers/{{customer.id}}/tasdiq-delete/">
+    <button>O'chirish</button>
+</a>
+
+</p>
 {% endfor %}
 </body>
 </html>

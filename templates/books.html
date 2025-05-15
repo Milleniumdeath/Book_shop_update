@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Book SHop | Books</title>
+
     <style>
     .btn-link {
       display: inline-block;
@@ -25,12 +26,25 @@
     <a href="/price/" class="btn-link">Book max price</a>
     <a href="/stock/" class="btn-link">Book max stock</a>
     <a href="/like/" class="btn-link">Author's books</a>
+    <br><br><br><br>
+    <form>
+        <input type="text" name="search"{% if search %} value="{{search}}"  {% endif %}>
+        <button>Qidirish</button>
+        <a href="/books/">
+            <button type="button">Hammasiga Qaytish</button>
+        </a>
+
+    </form>
 </head>
 <body>
 <h1>Books tables</h1>
 <hr>
 {% for book in books %}
-<p>{{forloop.counter}}. <a href="/book/">{{book.title}} </a>  {{book.price}} so'm</p>
+<p>{{forloop.counter}}. <a href="/book/{{book.id}}/">{{book.title}} </a>   {{book.price}} so'm
+    <a href="/books/{{book.id}}/delete/">
+        <button>O'chirish</button>
+    </a>
+</p>
 {% endfor %}
 </body>
 </html>
