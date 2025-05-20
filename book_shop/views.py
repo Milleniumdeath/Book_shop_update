@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-
+from .forms import *
 from .models import *
 def hello_view(request):
     return HttpResponse(
@@ -16,25 +16,32 @@ def home_view(request):
 
 def authors_view(request):
     if request.method=="POST":
-        Author.objects.create(
-            name=request.POST.get("name"),
-            birth_year = int(request.POST.get("birth_year"))
-        )
+        form_data = AuthorForm(request.POST)
+        if form_data.is_valid():
+            data = form_data.cleaned_data
+            Author.objects.create(
+                name=data['name'],
+                birth_year=data['birth_year']
+            )
+
+        # Author.objects.create(
+        #     name=request.POST.get("name"),
+        #     birth_year = int(request.POST.get("birth_year"))
+        # )
         return redirect('yozuvchi')
     authors = Author.objects.all()
     context = {
         'authors' : authors,
+        'form': AuthorForm,
     }
     return render(request, 'authors.html', context=context)
 
 def books_view(request):
     if request.method == "POST":
-        Book.objects.create(
-            title=request.POST.get("title"),
-            author=Author.objects.get(id=request.POST.get("author_id")),
-            price=request.POST.get("price"),
-            stock=request.POST.get("stock")
-        )
+        form_data = BookForm(request.POST)
+        if form_data.is_valid():
+            form_data.save()
+
         return redirect('books')
 
     books = Book.objects.all()
@@ -48,6 +55,7 @@ def books_view(request):
         'books' : books,
         'search': search,
         'yozuvchilar': yozuvchilar,
+        'form': BookForm,
     }
 
     return render(request, 'books.html', context=kitob )
@@ -72,6 +80,21 @@ def book_details(request, book_id):
         'book': book,
     }
     return render(request, 'book_details.html', context)
+
+def book_update_details(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    if request.method == "POST":
+        data = BookUpdateForm(request.POST, instance=book)
+        if data.is_valid():
+            data.save()
+        return redirect('books')
+    # yozuvchilar = Author.objects.order_by('name')
+    context = {
+        'book': book,
+        # 'yozuvchilar': yozuvchilar,
+        'form': BookUpdateForm(instance=book)
+    }
+    return render(request, 'book-update.html', context)
 
 def book_delete_details(request, book_id):
     book = get_object_or_404(Book, id=book_id)

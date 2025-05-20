@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOOK | SHOP | UPDATE</title>
+</head>
+<body>
+    <h1>{{book.title}} ma'lumotlarini o'zgartiish</h1>
+    <hr>
+    <form method="post">
+        {%csrf_token%}
+        {{ form.as_p }}
+<!--        <label for="title">Nomi:</label>-->
+<!--        <input type="text" name="title" id="title" value="{{book.title}}">-->
+<!--        <br><br>-->
+<!--        <label> Yozuvchisi:</label>-->
+<!--            <select name="author_id" >-->
+<!--                {% for author in yozuvchilar %}-->
+<!--                    <option value="{{author.id}}">{{author.name}}</option>-->
+<!--                {% endfor %}-->
+<!--            </select>-->
+<!--            <br><br>-->
+<!--        <label for="narx">Narxi:</label>-->
+<!--        <input type="number" for="price" id="narx" value="{{book.price}}">-->
+<!--        <br><br>-->
+<!--        <label for="stock">Mavjudligi:</label>-->
+<!--        <input type="number" for="stock" id="stock" value="{{book.stock}}">-->
+        <br><br>
+        <button type="submit">Taxrirlash</button>
+        <a href="{% url 'books'%}">
+            <button type="button">Bekor qilish</button>
+        </a>
+    </form>
+
+</body>
+</html>

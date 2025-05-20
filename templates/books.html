@@ -30,22 +30,23 @@
     <hr>
         <form method="post">
             {% csrf_token %}
-            <label >Kitob nomi:</label>
-            <input type="text" name="title" required placeholder="Kecha va Kunduz">
+            {{ form.as_p }}
+<!--            <label >Kitob nomi:</label>-->
+<!--            <input type="text" name="title" required placeholder="Kecha va Kunduz">-->
 
-            <label> Yozuvchi:</label>
-            <select name="author_id" >
-                {% for author in yozuvchilar %}
-                    <option value="{{author.id}}">{{author.name}}</option>
-                {% endfor %}
-            </select>
-            <br><br>
-            <label >Kitob narxi:</label>
-            <input type="number" name="price" required placeholder="100000so'm">
+<!--            <label> Yozuvchi:</label>-->
+<!--            <select name="author_id" >-->
+<!--                {% for author in yozuvchilar %}-->
+<!--                    <option value="{{author.id}}">{{author.name}}</option>-->
+<!--                {% endfor %}-->
+<!--            </select>-->
+<!--            <br><br>-->
+<!--            <label >Kitob narxi:</label>-->
+<!--            <input type="number" name="price" required placeholder="100000so'm">-->
 
-            <label >Nechta bor:</label>
-            <input type="number" name="stock" required placeholder="10ta">
-            <br><br>
+<!--            <label >Nechta bor:</label>-->
+<!--            <input type="number" name="stock" required placeholder="10ta">-->
+<!--            <br><br>-->
             <button type="submit">Qo'shish</button>
         </form>
 
@@ -68,6 +69,9 @@
 <p>{{forloop.counter}}. <a href="/book/{{book.id}}/">{{book.title}} </a>   {{book.price}} so'm
     <a href="/books/{{book.id}}/delete/">
         <button>O'chirish</button>
+    </a>
+    <a href="/books/{{book.id}}/update/">
+        <button>Taxrirlash</button>
     </a>
 </p>
 {% endfor %}

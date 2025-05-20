@@ -15,6 +15,7 @@ urlpatterns = [
     path('customers/', customers_view),
     path('book/<int:book_id>/', book_details),
     path('books/<int:book_id>/delete/', book_delete_details),
+    path('books/<int:book_id>/update/', book_update_details),
     path('customer/', customer_details),
     path('price/', book_max_price),
     path('stock/', book_max_stock),
